@@ -1,4 +1,3 @@
-create database Test_development;
 create database SIA1;
 create user 'testuser'@'localhost' identified by 'pass';
 grant select on * . * to 'testuser'@'localhost';
