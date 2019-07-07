@@ -1,7 +1,7 @@
 create database Test_development;
 create database SIA1;
 create user 'testuser'@'localhost' identified by 'pass';
-grant select on * . * to 'normaluser'@'localhost';
+grant select on * . * to 'testuser'@'localhost';
 use SIA1;
 
 create table empleado(
