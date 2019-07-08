@@ -1,5 +1,6 @@
 import javax.swing.*;
 
 public class Login {
-    private JPasswordField passwordField1;
+    private JPasswordField passwordPasswordField;
+    private JFormattedTextField formattedTextField1;
 }
