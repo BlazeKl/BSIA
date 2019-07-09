@@ -42,6 +42,7 @@ public class Admin extends javax.swing.JFrame {
         jTextPane3 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrador");
 
         jLabel1.setText("R.U.T.");
 

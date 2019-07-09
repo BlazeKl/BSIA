@@ -146,6 +146,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jTextField1.setToolTipText("Ej.: 123456789");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +200,6 @@ public class Login extends javax.swing.JFrame {
         int x = 1;
         final JPanel error = new JPanel();
         while (x != 0){
-            x = 1;
             if (nombre == 123456789){
                 x=0;
                 Menu.main(args);

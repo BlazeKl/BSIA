@@ -45,6 +45,7 @@ public class Bodega extends javax.swing.JFrame {
         jTextPane2 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bodega");
 
         jLabel1.setText("Productos");
 

@@ -45,6 +45,7 @@ public class Caja extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Caja");
 
         jLabel1.setText("Producto");
 
