@@ -6,15 +6,53 @@
 package bsia;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class Admin extends javax.swing.JFrame {
 
+    ConexionBD con = new ConexionBD();
+    Connection cn = con.conexion();
     /**
      * Creates new form Admin
      */
     public Admin() {
         initComponents();
+        mostrartabla();
+    }
+    
+        private void mostrartabla (){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("RUT");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO");
+        modelo.addColumn("SUELDO");
+        modelo.addColumn("TELEFONO");
+        modelo.addColumn("DIRECCION");
+        jTable2.setModel(modelo);
+        
+        String sql = "";
+        
+        String datos[] = new String [6];
+        Statement st;
+        try{
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);
+                datos[4]=rs.getString(5);
+                datos[5]=rs.getString(6);
+                modelo.addRow(datos);
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
     }
 
     /**
@@ -168,17 +206,7 @@ public class Admin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    void mostrartabla (){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("RUT");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("APELLIDO");
-        modelo.addColumn("SUELDO");
-        modelo.addColumn("TELEFONO");
-        modelo.addColumn("DIRECCION");
-    
-    
-    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
