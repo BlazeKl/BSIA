@@ -9,6 +9,9 @@ package bsia;
  *
  * @author pipe
  */
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -144,7 +147,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("EJ.: 123456789");
+        jTextField1.setToolTipText("Ej.: 123456789");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -192,14 +195,19 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String[] args = null;
-        String nombre;
-        nombre = jTextField1.getText();
-        if (nombre ==){
-            Menu.main(args);}
-        else{
-            
-            
+        int nombre = Integer.parseInt(jTextField1.getText());
+        int x = 1;
+        final JPanel error = new JPanel();
+        while (x != 0){
+            if (nombre == 123456789){
+                x=0;
+                Menu.main(args);
             }
+            else {
+                JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
+                
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
