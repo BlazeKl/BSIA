@@ -5,10 +5,7 @@
  */
 package bsia;
 
-/**
- *
- * @author pipe
- */
+import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -146,6 +143,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jTextField1.setToolTipText("Ej.: 123456789");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +200,6 @@ public class Login extends javax.swing.JFrame {
         int x = 1;
         final JPanel error = new JPanel();
         while (x != 0){
-            x = 1;
             if (nombre == 123456789){
                 x=0;
                 this.dispose();
@@ -225,7 +222,16 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SIA1","testuser","pass");
+			System.out.println("Conectado!");
+		}catch (SQLException e){
+			System.err.println(e);
+		}
+		
+		try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
