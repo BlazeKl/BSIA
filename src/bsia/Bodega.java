@@ -6,12 +6,19 @@
 package bsia;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class Bodega extends javax.swing.JFrame {
 	
+	ConexionBD con = new ConexionBD();
+	Connection cn = con.conexion();
+	
     public Bodega() {
         initComponents();
+		mostrartabla();
+		mostrartabla2();
     }
 
 	void mostrartabla(){
@@ -26,7 +33,52 @@ public class Bodega extends javax.swing.JFrame {
 		String sql = "SELECT * FROM producto";
 		
 		String datos[] = new String [5];
-		Statement st = cn.createStatement();
+		Statement st;
+		try {
+			st = cn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				datos[0] = rs.getString(1);
+				datos[1] = rs.getString(2);
+				datos[2] = rs.getString(3);
+				datos[3] = rs.getString(4);
+				datos[4] = rs.getString(5);
+				modelo.addRow(datos);
+			}
+			Productos.setModel(modelo);
+		} catch (SQLException ex) {
+			Logger.getLogger(Bodega.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	void mostrartabla2(){
+		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("RUT");
+		modelo.addColumn("Fecha");
+		modelo.addColumn("Hora");
+		modelo.addColumn("Deuda");
+		Provisiones.setModel(modelo);
+		
+		String sql = "SELECT * FROM provision";
+		
+		String datos[] = new String [5];
+		Statement st;
+		try {
+			st = cn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				datos[0] = rs.getString(1);
+				datos[1] = rs.getString(2);
+				datos[2] = rs.getString(3);
+				datos[3] = rs.getString(4);
+				datos[4] = rs.getString(5);
+				modelo.addRow(datos);
+			}
+			Provisiones.setModel(modelo);
+		} catch (SQLException ex) {
+			Logger.getLogger(Bodega.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +95,7 @@ public class Bodega extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         Productos = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Provisiones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bodega");
@@ -69,7 +121,7 @@ public class Bodega extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(Productos);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Provisiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,7 +129,7 @@ public class Bodega extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable2);
+        jScrollPane1.setViewportView(Provisiones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,11 +213,11 @@ public class Bodega extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Productos;
+    private javax.swing.JTable Provisiones;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
