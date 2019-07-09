@@ -5,10 +5,8 @@
  */
 package bsia;
 
-/**
- *
- * @author pipe
- */
+import java.sql.*;
+
 public class Admin extends javax.swing.JFrame {
 
     /**
@@ -128,6 +126,15 @@ public class Admin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SIA1","testuser","pass");
+			System.out.println("Conectado!");
+		}catch (SQLException e){
+			System.err.println(e);
+		}
+		
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -13,7 +13,6 @@ public class BSIA {
 		}catch (SQLException e){
 			System.err.println(e);
 		}
-		
 		Login.main(args);
     }
     
