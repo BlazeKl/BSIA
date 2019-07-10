@@ -11,17 +11,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class Caja extends javax.swing.JFrame {
 
     ConexionBD con = new ConexionBD();
-    Connection cn = con.conexion();
+	Connection cn = con.conexion();
 	
     public Caja() {
         initComponents();
-	setLocationRelativeTo(null);
-	mostrartabla();
+		setLocationRelativeTo(null);
+		mostrartabla();
     }
         DefaultTableModel creartabla(){
             DefaultTableModel modelo = new DefaultTableModel();
@@ -31,29 +30,26 @@ public class Caja extends javax.swing.JFrame {
             jTable1.setModel(modelo);
             return modelo;
         }
-	void agregarelemento(int codigo, DefaultTableModel modela){
-                
-            TableColumn modelo = new TableColumn();
+	void agregarelemento(int codigo, DefaultTableModel modelo){
             
             String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
             
-                String datos[] = new String [3];
-                Statement st;
-                try {
-                    st = cn.createStatement();
-                    ResultSet rs = st.executeQuery(sql);
-                    while(rs.next()){
-                        datos[0] = rs.getString(1);
-                        datos[1] = rs.getString(3);
-                        datos[2] = rs.getString(4);
-                        modela.addRow(datos);
-                    }
-                    jTable1.addColumn(modelo);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
+            String datos[] = new String [3];
+            Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(3);
+                datos[2] = rs.getString(4);
+                modelo.addRow(datos);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        }
 	void mostrartabla(){
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
@@ -254,9 +250,8 @@ public class Caja extends javax.swing.JFrame {
     private void BottonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonAgregarActionPerformed
         // TODO add your handling code here:
         int codigo = Integer.parseInt(jTextField1.getText());
-        DefaultTableModel modela = creartabla();
-        agregarelemento(codigo, modela);
-        
+        DefaultTableModel modelo = creartabla();
+        agregarelemento( codigo, modelo);
     }//GEN-LAST:event_BottonAgregarActionPerformed
 
     /**
