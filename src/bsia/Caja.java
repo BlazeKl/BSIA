@@ -56,12 +56,12 @@ public class Caja extends javax.swing.JFrame {
 		modelo.addColumn("ID");
 		modelo.addColumn("RUT");
 		modelo.addColumn("Fecha");
-		modelo.addColumn("Hora");
 		RegistroVenta.setModel(modelo);
-		DateTimeFormatter hoy = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate localDate = LocalDate.now();
-		
-		String sql = "SELECT * FROM venta WHERE fecha_vt = '"+ hoy.format(localDate) +"';";
+		java.util.Date date = new java.util.Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		String currentDay = sdf.format(date);
+		System.out.println(currentDay);
+		String sql = "SELECT * FROM venta WHERE fecha_vt = '"+ currentDay +"';";
 		String datos[] = new String [5];
 		Statement st;
 		try {
@@ -71,7 +71,6 @@ public class Caja extends javax.swing.JFrame {
 				datos[0] = rs.getString(1);
 				datos[1] = rs.getString(2);
 				datos[2] = rs.getString(3);
-				datos[3] = rs.getString(4);
 				modelo.addRow(datos);
 			}
 			RegistroVenta.setModel(modelo);
@@ -97,11 +96,13 @@ public class Caja extends javax.swing.JFrame {
             }
         }
         void agregarventa(int rut){
-            DateTimeFormatter hoy = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            DateTimeFormatter hra = DateTimeFormatter.ofPattern("HH:mm:ss");
-            LocalDate localDate = LocalDate.now();
-            String sql = "INSERT INTO `venta` (`rut_ep`, `fecha_vt`,`hora_vt`) VALUES ( " + rut + ", "+ hoy.format(localDate) + ", " + hra.format(localDate) + ") ";
-            Statement st;
+            java.util.Date date = new java.util.Date();
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+			String currentDay = sdf.format(date);
+			System.out.println(sdf);
+            String sql = "INSERT INTO `venta` (`rut_ep`, `fecha_vt`) VALUES ( " + rut + ", "+ currentDay + ");";
+            System.out.println(sql);
+			Statement st;
             try {
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
@@ -273,7 +274,7 @@ public class Caja extends javax.swing.JFrame {
     private void BottonVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonVentaActionPerformed
 
 		int rut = Integer.parseInt(Login.jTextField1.getText());
-                agregarventa(rut);
+        agregarventa(rut);
 		listaventa.setRowCount(0);
 		mostrartabla();
 		TOTAL = 0;

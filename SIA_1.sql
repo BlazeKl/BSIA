@@ -42,7 +42,6 @@ create table venta(
 id_venta	int not null auto_increment,
 rut_ep		int not null,
 fecha_vt	date,
-hora_vt		time,
 primary key (id_venta),
 foreign key (rut_ep) references empleado	(rut_ep)
 );
@@ -93,7 +92,7 @@ INSERT INTO `empleado` (`rut_ep`, `nom_ep`, `ape_ep`, `sueldo_ep`, `fono_ep`, `d
 INSERT INTO `clasificacion`(`id_cf`,`nom_cf`) VALUES (1,'Bebida');
 INSERT INTO `proveedor`(`rut_pv`,`nom_pv`,`ape_pv`,`fono_pv`,`empresa_pv`) VALUES (000000001,'Raul','asdf',1231234,'patata');
 INSERT INTO `horario` (`rut_ep`,`ho_en_ho`,`ho_sa_ho`,`fe_tb_ho`) VALUES (123456789,'120000','130000','2019-06-06');
-INSERT INTO `venta` (`rut_ep`,`fecha_vt`,`hora_vt`) VALUES (123456789,'2019-07-10','034300');
+INSERT INTO `venta` (`rut_ep`,`fecha_vt`) VALUES (123456789,'2019-07-10');
 INSERT INTO `producto` (`cod_br_pd`,`id_cf`,`nom_pd`,`precio_pd`,`cant_crit_pd`) VALUES (1,1,'Coca-Cola',600,100);
 INSERT INTO `provision` (`id_pv`,`rut_pv`,`fecha_pi`,`hora_pi`,`fecha_max_pi`,`deuda_pi`) VALUES (1,000000001,'2019-05-05','100000','2019-07-07',13370);
 INSERT INTO `reg_venta` (`cod_br_pd`,`id_venta`,`cant_rv`) VALUES (1,1,1);
