@@ -19,10 +19,10 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
-        mostrartabla();
+        mostrarinfo();
     }
     
-        private void mostrartabla (){
+        private void mostrarinfo(){
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("RUT");
         modelo.addColumn("NOMBRE");
@@ -54,7 +54,30 @@ public class Admin extends javax.swing.JFrame {
     
     
     }
-
+        private void mostrarventas(int ruto){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("FECHA");
+        modelo.addColumn("HORA");
+        jTable2.setModel(modelo);
+        
+        String sql = " SELECT * FROM venta WHERE rut_ep='" + ruto + "'";
+        
+        String datos[] = new String [2];
+        Statement st;
+        try{
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                datos[0]=rs.getString(3);
+                datos[1]=rs.getString(4);
+                modelo.addRow(datos);
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
