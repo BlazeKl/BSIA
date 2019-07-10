@@ -36,9 +36,9 @@ public class Caja extends javax.swing.JFrame {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                datos[1] = rs.getString(1);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(3);
+                datos[2] = rs.getString(4);
                 modelo.addRow(datos);
             }
             jTable1.setModel(modelo);
