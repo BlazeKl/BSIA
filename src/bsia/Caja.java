@@ -6,6 +6,8 @@
 package bsia;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -27,8 +29,10 @@ public class Caja extends javax.swing.JFrame {
 		modelo.addColumn("Fecha");
 		modelo.addColumn("Hora");
 		RegistroVenta.setModel(modelo);
+		DateTimeFormatter hoy = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
 		
-		String sql = "SELECT * FROM venta";
+		String sql = "SELECT * FROM venta WHERE fecha_vt = '"+ hoy.format(localDate) +"'";
 		
 		String datos[] = new String [5];
 		Statement st;
