@@ -56,9 +56,9 @@ public class Bodega extends javax.swing.JFrame {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
 		modelo.addColumn("RUT");
-		modelo.addColumn("Fecha");
+		modelo.addColumn("Fecha Recepcion");
 		modelo.addColumn("Hora");
-		modelo.addColumn("Deuda");
+		modelo.addColumn("Fecha Pago");
 		Provisiones.setModel(modelo);
 		
 		String sql = "SELECT * FROM provision";
