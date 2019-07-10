@@ -32,7 +32,7 @@ public class Caja extends javax.swing.JFrame {
     }
 
 	public void agregarproducto(int codigo){
-		String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
+		String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "';";
 		String datos[] = new String [3];
 		Statement st;
 		try {
@@ -61,8 +61,7 @@ public class Caja extends javax.swing.JFrame {
 		DateTimeFormatter hoy = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		
-		String sql = "SELECT * FROM venta WHERE fecha_vt = '"+ hoy.format(localDate) +"'";
-		
+		String sql = "SELECT * FROM venta WHERE fecha_vt = '"+ hoy.format(localDate) +"';";
 		String datos[] = new String [5];
 		Statement st;
 		try {
@@ -83,19 +82,33 @@ public class Caja extends javax.swing.JFrame {
         void quitarstock(int codigo){
             String sql = "SELECT * FROM producto WHERE cod_br_pd = '" + codigo + "';";
             Statement st, st1;
-        try {
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()){
-                aux1=rs.getInt(5);
-                aux1--;
+            try {
+                st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()){
+                   aux1=rs.getInt(5);
+                   aux1--;
+                }
+                String sql1 = "UPDATE producto SET cant_crit_pd = '" + aux1 + "' WHERE `cod_br_pd` ='" + codigo + "';";
+                st1 = cn.createStatement();
+                int rs1 = st1.executeUpdate(sql1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sql1 = "UPDATE producto SET cant_crit_pd = '" + aux1 + "' WHERE `cod_br_pd` ='" + codigo + "';";
-            st1 = cn.createStatement();
-            int rs1 = st1.executeUpdate(sql1);
-        } catch (SQLException ex) {
-            Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
         }
+        void agregarventa(int rut){
+            DateTimeFormatter hoy = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter hra = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalDate localDate = LocalDate.now();
+            String sql = "INSERT INTO `venta` (`rut_ep`, `fecha_vt`,`hora_vt`) VALUES ( " + rut + ", "+ hoy.format(localDate) + ", " + hra.format(localDate) + ") ";
+            Statement st;
+            try {
+                st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
         }
 
     /**
@@ -260,8 +273,7 @@ public class Caja extends javax.swing.JFrame {
     private void BottonVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonVentaActionPerformed
 
 		int rut = Integer.parseInt(Login.jTextField1.getText());
-                
-                
+                agregarventa(rut);
 		listaventa.setRowCount(0);
 		mostrartabla();
 		TOTAL = 0;
