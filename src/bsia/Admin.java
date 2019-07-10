@@ -21,7 +21,6 @@ public class Admin extends javax.swing.JFrame {
         initComponents();
         mostrarinfo();
     }
-    
         private void mostrarinfo(){
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("RUT");
@@ -51,8 +50,6 @@ public class Admin extends javax.swing.JFrame {
         } catch(SQLException ex){
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
     }
         private void mostrarventas(int ruto){
         DefaultTableModel modelo = new DefaultTableModel();
@@ -75,7 +72,6 @@ public class Admin extends javax.swing.JFrame {
         } catch(SQLException ex){
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
     private void mostrarhorario(int ruto){
         DefaultTableModel modelo = new DefaultTableModel();

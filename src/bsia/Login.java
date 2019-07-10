@@ -6,16 +6,36 @@
 package bsia;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Login extends javax.swing.JFrame {
+    
+    ConexionBD con = new ConexionBD();
+    Connection cn = con.conexion();
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+    }
+    private ResultSet RSearch(int ruto){
+        
+        String sql = " SELECT rut_ep FROM empleado WHERE rut_ep IN ('"+ ruto + "')";
+        Statement st;
+        
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 
     /**
@@ -197,12 +217,10 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String[] args = null;
         int nombre = Integer.parseInt(jTextField1.getText());
-        int ruto = ;
         int x = 1;
-        
         final JPanel error = new JPanel();
         while (x != 0){
-            if (nombre == 123456789){
+            if ( Integer.parseInt(RSearch(nombre).toString()) == 1){
                 x=0;
                 this.dispose();
                 Menu.main(args);
