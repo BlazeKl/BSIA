@@ -88,3 +88,13 @@ primary key (id_rp),
 foreign key (cod_br_pd) references producto 	(cod_br_pd),
 foreign key (id_pv) 	references provision 	(id_pv)
 );
+
+INSERT INTO `empleado` (`rut_ep`, `nom_ep`, `ape_ep`, `sueldo_ep`, `fono_ep`, `direcc_ep`) VALUES (123456789, 'Katrine', 'Cremin', 157772, 79540419, '494 Carroll Hill Suite 106');
+INSERT INTO `clasificacion`(`id_cf`,`nom_cf`) VALUES (1,'Bebida');
+INSERT INTO `proveedor`(`rut_pv`,`nom_pv`,`ape_pv`,`fono_pv`,`empresa_pv`) VALUES (000000001,'Raul','asdf',1231234,'patata');
+INSERT INTO `horario` (`rut_ep`,`ho_en_ho`,`ho_sa_ho`,`fe_tb_ho`) VALUES (123456789,'120000','130000','2019-06-06');
+INSERT INTO `venta` (`rut_ep`,`fecha_vt`,`hora_vt`) VALUES (123456789,'2019-07-10','034300');
+INSERT INTO `producto` (`cod_br_pd`,`id_cf`,`nom_pd`,`precio_pd`,`cant_crit_pd`) VALUES (1,1,'Coca-Cola',600,100);
+INSERT INTO `provision` (`id_pv`,`rut_pv`,`fecha_pi`,`hora_pi`,`fecha_max_pi`,`deuda_pi`) VALUES (1,000000001,'2019-05-05','100000','2019-07-07',13370);
+INSERT INTO `reg_venta` (`cod_br_pd`,`id_venta`,`cant_rv`) VALUES (1,1,1);
+INSERT INTO `reg_provision` (`id_rp`,`cod_br_pd`,`id_pv`,`cantidad_rp`,`fecha_venci_rp`) VALUES (1,1,1,100,'2020-01-01');
