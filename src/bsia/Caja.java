@@ -100,7 +100,7 @@ public class Caja extends javax.swing.JFrame {
 			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 			String currentDay = sdf.format(date);
 			System.out.println(sdf);
-            String sql = "INSERT INTO `venta` (`rut_ep`, `fecha_vt`) VALUES ( " + rut + ", "+ currentDay + ");";
+            String sql = "INSERT INTO `venta` (`rut_ep`, `fecha_vt`) VALUES ( " + rut + ", '"+ currentDay + "');";
             System.out.println(sql);
 			Statement st;
             try {
