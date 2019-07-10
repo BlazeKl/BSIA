@@ -30,8 +30,7 @@ public class Caja extends javax.swing.JFrame {
             jTable1.setModel(modelo);
             return modelo;
         }
-	void agregarelemento(int codigo){
-            DefaultTableModel modelo = creartabla();
+	void agregarelemento(int codigo, DefaultTableModel modelo){
             
             String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
             
@@ -251,7 +250,8 @@ public class Caja extends javax.swing.JFrame {
     private void BottonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonAgregarActionPerformed
         // TODO add your handling code here:
         int codigo = Integer.parseInt(jTextField1.getText());
-        agregarelemento(codigo);
+        DefaultTableModel modelo = creartabla();
+        agregarelemento( codigo, modelo);
     }//GEN-LAST:event_BottonAgregarActionPerformed
 
     /**
