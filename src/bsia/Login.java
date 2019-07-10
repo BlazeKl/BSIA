@@ -40,7 +40,6 @@ public class Login extends javax.swing.JFrame {
         }return 0;
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -225,6 +224,7 @@ public class Login extends javax.swing.JFrame {
         while (x != 0){
             if (RSearch(nombre) == 1){
                x=0;
+			   RUT.rut2 = nombre;
                this.dispose();
                Menu.main(args);
            }
@@ -284,6 +284,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
