@@ -91,7 +91,7 @@ public class Caja extends javax.swing.JFrame {
                 aux1=rs.getInt(5);
             }
             st1 = cn.createStatement();
-            ResultSet rs1 = st1.executeQuery(sql1);
+            int rs1 = st1.executeUpdate(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
         }
