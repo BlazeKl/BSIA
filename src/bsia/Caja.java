@@ -26,8 +26,8 @@ public class Caja extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 		mostrartabla();
 		listaventa.addColumn("ID");
-		listaventa.addColumn("Nombre");
-		listaventa.addColumn("Precio");
+		listaventa.addColumn("NOMBRE");
+		listaventa.addColumn("PRECIO");
     }
 
 	public void agregarproducto(int codigo){
