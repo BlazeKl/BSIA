@@ -21,7 +21,32 @@ public class Caja extends javax.swing.JFrame {
         initComponents();
 		mostrartabla();
     }
-	
+	void agregarelemento(int codigo){
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("ID");
+            modelo.addColumn("NOMNBRE");
+            modelo.addColumn("PRECIO");
+            jTable1.setModel(modelo);
+            
+            String sql = "";
+            
+            String datos[] = new String [3];
+            Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[1] = rs.getString(1);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                modelo.addRow(datos);
+            }
+            jTable1.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        }
 	void mostrartabla(){
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
@@ -64,8 +89,8 @@ public class Caja extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BottonAgregar = new javax.swing.JButton();
+        BottonVenta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -88,9 +113,19 @@ public class Caja extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Agregar");
+        BottonAgregar.setText("Agregar");
+        BottonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonAgregarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Venta");
+        BottonVenta.setText("Venta");
+        BottonVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonVentaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Historial");
 
@@ -118,7 +153,7 @@ public class Caja extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Producto", "Cant", "Precio"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -140,9 +175,9 @@ public class Caja extends javax.swing.JFrame {
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(BottonAgregar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))
+                                .addComponent(BottonVenta))
                             .addComponent(jLabel1)
                             .addComponent(jTextField1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +209,8 @@ public class Caja extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(BottonAgregar)
+                            .addComponent(BottonVenta))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,6 +238,17 @@ public class Caja extends javax.swing.JFrame {
 		this.dispose();
 		Menu.main(args);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void BottonVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonVentaActionPerformed
+        // TODO add your handling code here:
+        int rut = Integer.parseInt(Login.jTextField1.getText());
+    }//GEN-LAST:event_BottonVentaActionPerformed
+
+    private void BottonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonAgregarActionPerformed
+        // TODO add your handling code here:
+        int codigo = Integer.parseInt(jTextField1.getText());
+        agregarelemento(codigo);
+    }//GEN-LAST:event_BottonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,9 +286,9 @@ public class Caja extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BottonAgregar;
+    private javax.swing.JButton BottonVenta;
     private javax.swing.JTable RegistroVenta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

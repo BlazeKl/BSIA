@@ -224,7 +224,6 @@ public class Login extends javax.swing.JFrame {
         while (x != 0){
             if (RSearch(nombre) == 1){
                x=0;
-			   RUT.rut2 = nombre;
                this.dispose();
                Menu.main(args);
            }
