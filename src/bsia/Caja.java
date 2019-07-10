@@ -81,7 +81,7 @@ public class Caja extends javax.swing.JFrame {
 	}
         void quitarstock(int codigo){
         try {
-            PreparedStatement pps = cn.prepareStatement("UPDATE `producto` SET `cant_crit_pd`=`cant_crit_pd -1 ` WHERE `cod_br_pd` =' " + codigo + "';");
+            PreparedStatement pps = cn.prepareStatement("SELECT * FROM `producto` WHERE `cod_br_pd` = '" + codigo + "'; UPDATE `producto` SET `cant_crit_pd` = 'cant_crit_pd'-- WHERE `cod_br_pd` =' " + codigo + "';");
         } catch (SQLException ex) {
             Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
         }
