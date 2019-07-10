@@ -220,7 +220,7 @@ public class Login extends javax.swing.JFrame {
         int x = 1;
         final JPanel error = new JPanel();
         while (x != 0){
-            if ( Integer.parseInt(RSearch(nombre).toString()) == 1){
+            if ( Integer.parseInt(RSearch(nombre).toString()) == nombre){
                 x=0;
                 this.dispose();
                 Menu.main(args);
