@@ -231,6 +231,7 @@ public class Login extends javax.swing.JFrame {
             else {
                JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
                 x=0;
+                
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
