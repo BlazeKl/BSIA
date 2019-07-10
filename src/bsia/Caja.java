@@ -28,7 +28,7 @@ public class Caja extends javax.swing.JFrame {
             modelo.addColumn("PRECIO");
             jTable1.setModel(modelo);
             
-            String sql = "";
+            String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
             
             String datos[] = new String [3];
             Statement st;
