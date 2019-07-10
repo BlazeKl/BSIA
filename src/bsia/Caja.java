@@ -87,10 +87,8 @@ public class Caja extends javax.swing.JFrame {
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()){
-                aux1=rs.getInt(5);
-                aux1--;
-            }
+            aux1=rs.getInt(5);
+            aux1--;
             st1 = cn.createStatement();
             int rs1 = st1.executeUpdate(sql1);
         } catch (SQLException ex) {
