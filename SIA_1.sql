@@ -1,6 +1,6 @@
 create database SIA1;
 create user 'testuser'@'localhost' identified by 'pass';
-grant select, insert, delete on * . * to 'testuser'@'localhost';
+grant select, update,insert, delete on * . * to 'testuser'@'localhost';
 use SIA1;
 
 create table empleado(
