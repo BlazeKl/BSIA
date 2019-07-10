@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
     }
     private ResultSet RSearch(int ruto){
         
-        String sql = " SELECT rut_ep FROM empleado WHERE rut_ep IN ('"+ ruto + "')";
+        String sql = " SELECT rut_ep FROM empleado WHERE rut_ep LIKE ('"+ ruto + "')";
         Statement st;
         
         try {
