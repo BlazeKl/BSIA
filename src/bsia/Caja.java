@@ -17,39 +17,39 @@ public class Caja extends javax.swing.JFrame {
     ConexionBD con = new ConexionBD();
 	Connection cn = con.conexion();
 	
+	DefaultTableModel listaventa = new DefaultTableModel();
+	int TOTAL = 0;
+	int aux = 1;
+	
     public Caja() {
         initComponents();
 		setLocationRelativeTo(null);
 		mostrartabla();
+		listaventa.addColumn("ID");
+		listaventa.addColumn("Nombre");
+		listaventa.addColumn("Precio");
     }
-        DefaultTableModel creartabla(){
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("ID");
-            modelo.addColumn("NOMNBRE");
-            modelo.addColumn("PRECIO");
-            jTable1.setModel(modelo);
-            return modelo;
-        }
-	void agregarelemento(int codigo, DefaultTableModel modelo){
-            
-            String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
-            
-            String datos[] = new String [3];
-            Statement st;
-        try {
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(3);
-                datos[2] = rs.getString(4);
-                modelo.addRow(datos);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-        }
+
+	public void agregarproducto(int codigo){
+		String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
+		String datos[] = new String [3];
+		Statement st;
+		try {
+			st = cn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				datos[0] = rs.getString(1);
+				datos[1] = rs.getString(3);
+				datos[2] = rs.getString(4);
+				TOTAL += rs.getInt(4);
+				listaventa.addRow(datos);
+			}jTable1.setModel(listaventa);
+		} catch (SQLException ex) {
+			Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	
 	void mostrartabla(){
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
@@ -243,15 +243,20 @@ public class Caja extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void BottonVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonVentaActionPerformed
-        // TODO add your handling code here:
-        int rut = Integer.parseInt(Login.jTextField1.getText());
+
+        
+		int rut = Integer.parseInt(Login.jTextField1.getText());
+		listaventa.setRowCount(0);
+		mostrartabla();
+		TOTAL = 0;
+		jTextPane1.setText(Integer.toString(TOTAL));
     }//GEN-LAST:event_BottonVentaActionPerformed
 
     private void BottonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonAgregarActionPerformed
         // TODO add your handling code here:
         int codigo = Integer.parseInt(jTextField1.getText());
-        DefaultTableModel modelo = creartabla();
-        agregarelemento( codigo, modelo);
+		agregarproducto(codigo);
+		jTextPane1.setText(Integer.toString(TOTAL));
     }//GEN-LAST:event_BottonAgregarActionPerformed
 
     /**
