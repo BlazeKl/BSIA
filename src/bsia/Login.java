@@ -219,18 +219,19 @@ public class Login extends javax.swing.JFrame {
         int nombre = Integer.parseInt(jTextField1.getText());
         int x = 1;
         final JPanel error = new JPanel();
-        while (x != 0){
-            if ( Integer.parseInt(RSearch(nombre).toString()) == nombre){
-                x=0;
-                this.dispose();
-                Menu.main(args);
-            }
-            else {
-                JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
-                x=0;
+        System.out.println(RSearch(nombre));
+        //while (x != 0){
+            //if ( Integer.parseInt(RSearch(nombre).toString()) == nombre){
+               // x=0;
+               // this.dispose();
+               // Menu.main(args);
+           // }
+            //else {
+               // JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
+                //x=0;
                 
-            }
-        }
+            //}
+        //}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
