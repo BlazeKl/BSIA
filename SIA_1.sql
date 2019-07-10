@@ -29,7 +29,7 @@ primary key (rut_pv)
 );
 
 create table horario(
-id_ho		int,
+id_ho		int not null auto_increment,
 rut_ep		int not null,
 ho_en_ho	time,
 ho_sa_ho	time,
@@ -39,7 +39,7 @@ foreign key (rut_ep) references empleado	(rut_ep)
 );
 
 create table venta(	
-id_venta	int not null,
+id_venta	int not null auto_increment,
 rut_ep		int not null,
 fecha_vt	date,
 hora_vt		time,
@@ -69,7 +69,7 @@ foreign key (rut_pv) references proveedor	(rut_pv)
 );
 
 create table reg_venta(
-id_rv 		int not null,
+id_rv 		int not null auto_increment,
 cod_br_pd	int not null,	
 id_venta	int not null,
 cant_rv		int not null,
