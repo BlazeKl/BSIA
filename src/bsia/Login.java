@@ -22,19 +22,22 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-    private ResultSet RSearch(int ruto){
+    private int RSearch(int ruto){
         
-        String sql = " SELECT rut_ep FROM empleado WHERE rut_ep LIKE ('"+ ruto + "')";
+        String sql = "SELECT rut_ep FROM empleado";
         Statement st;
         
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            return rs;
+			while(rs.next()){
+				if (ruto == rs.getInt(1)){
+					return 1;
+				}
+			}
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        }return 0;
 
     }
 
@@ -219,19 +222,18 @@ public class Login extends javax.swing.JFrame {
         int nombre = Integer.parseInt(jTextField1.getText());
         int x = 1;
         final JPanel error = new JPanel();
-        System.out.println(RSearch(nombre));
-        //while (x != 0){
-            //if ( Integer.parseInt(RSearch(nombre).toString()) == nombre){
-               // x=0;
-               // this.dispose();
-               // Menu.main(args);
-           // }
-            //else {
-               // JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
-                //x=0;
+        while (x != 0){
+            if (RSearch(nombre) == 1){
+               x=0;
+               this.dispose();
+               Menu.main(args);
+           }
+            else {
+               JOptionPane.showMessageDialog(error, "Rut incorrecto, Ingreselo nuevamente", "", HEIGHT);
+                x=0;
                 
-            //}
-        //}
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
