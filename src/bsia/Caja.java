@@ -22,12 +22,16 @@ public class Caja extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 		mostrartabla();
     }
-	void agregarelemento(int codigo){
+        DefaultTableModel creartabla(){
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("ID");
             modelo.addColumn("NOMNBRE");
             modelo.addColumn("PRECIO");
             jTable1.setModel(modelo);
+            return modelo;
+        }
+	void agregarelemento(int codigo){
+            DefaultTableModel modelo = creartabla();
             
             String sql = "SELECT * FROM producto WHERE cod_br_pd = '"+ codigo + "' ";
             
@@ -42,7 +46,6 @@ public class Caja extends javax.swing.JFrame {
                 datos[2] = rs.getString(4);
                 modelo.addRow(datos);
             }
-            jTable1.setModel(modelo);
         } catch (SQLException ex) {
             Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
         }
