@@ -17,6 +17,7 @@ public class Bodega extends javax.swing.JFrame {
 	
     public Bodega() {
         initComponents();
+		setLocationRelativeTo(null);
 		mostrartabla();
 		mostrartabla2();
     }

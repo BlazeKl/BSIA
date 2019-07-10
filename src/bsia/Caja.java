@@ -19,6 +19,7 @@ public class Caja extends javax.swing.JFrame {
 	
     public Caja() {
         initComponents();
+		setLocationRelativeTo(null);
 		mostrartabla();
     }
 	void agregarelemento(int codigo){
