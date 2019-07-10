@@ -32,7 +32,7 @@ public class Admin extends javax.swing.JFrame {
         modelo.addColumn("DIRECCION");
         jTable2.setModel(modelo);
         
-        String sql = "";
+        String sql = " SELECT * FROM empleado";
         
         String datos[] = new String [6];
         Statement st;
