@@ -19,6 +19,7 @@ public class Caja extends javax.swing.JFrame {
 	
 	DefaultTableModel listaventa = new DefaultTableModel();
 	int TOTAL = 0;
+        int aux1 =0;
 	int aux = 1;
 	
     public Caja() {
@@ -80,8 +81,17 @@ public class Caja extends javax.swing.JFrame {
 		}
 	}
         void quitarstock(int codigo){
+            String sql = "SELECT * FROM producto WHERE cod_br_pd = '" + codigo + "';";
+            String sql1 = "UPDATE producto SET cant_crit_pd = '" + aux1 + "' WHERE `cod_br_pd` ='" + codigo + "';";
+            Statement st, st1;
         try {
-            PreparedStatement pps = cn.prepareStatement("SELECT * FROM `producto` WHERE `cod_br_pd` = '" + codigo + "'; UPDATE `producto` SET `cant_crit_pd` = 'cant_crit_pd--' WHERE `cod_br_pd` =' " + codigo + "';");
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                aux1=rs.getInt(5);
+            }
+            st1 = cn.createStatement();
+            ResultSet rs1 = st1.executeQuery(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -261,8 +271,8 @@ public class Caja extends javax.swing.JFrame {
         // TODO add your handling code here:
         int codigo = Integer.parseInt(jTextField1.getText());
 	agregarproducto(codigo);
-	jTextPane1.setText(Integer.toString(TOTAL));
         quitarstock(codigo);
+	jTextPane1.setText(Integer.toString(TOTAL));
     }//GEN-LAST:event_BottonAgregarActionPerformed
 
     /**
