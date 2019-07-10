@@ -197,7 +197,9 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String[] args = null;
         int nombre = Integer.parseInt(jTextField1.getText());
+        int ruto = ;
         int x = 1;
+        
         final JPanel error = new JPanel();
         while (x != 0){
             if (nombre == 123456789){
